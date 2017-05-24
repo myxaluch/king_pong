@@ -1,0 +1,15 @@
+.modal-dialog role='document'
+  .modal-content
+    .modal-header
+      h3 Выбери игроков для сегодняшних игр
+    .modal-body
+      = form_tag games_path do
+        table.table.table-hover
+          tr
+            th Имя
+            th Будет играть?
+          = render partial: 'players/short_players_table', collection: @players, as: :player
+        .modal-footer
+          = submit_tag 'Вперёд!', class: 'btn main_button'
+
+

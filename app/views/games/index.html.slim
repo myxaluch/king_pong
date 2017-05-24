@@ -1,0 +1,15 @@
+br
+.container
+  .row.games-list
+    - if Game.active.present?
+      = render partial: 'active_games', collection: @games, as: :game
+    - else
+      table.table
+        tr
+          th #
+          th Победитель
+          th Проигравший
+          th Счёт
+          th Дата игры
+        = render partial: 'games_table', collection: @games, as: :game
+

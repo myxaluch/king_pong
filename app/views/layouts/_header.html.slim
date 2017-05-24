@@ -1,0 +1,12 @@
+.container
+  .header
+    .row
+      .col-md-4
+        h2.text-center
+          = link_to  'Игры', correct_games_path, class: "main_link #{correct_active_class('/games')}"
+      .col-md-4.text-center
+        = link_to root_path
+          = image_tag 'king_pong.png', height: 150, width: 120, style: 'margin-top: 24px; '
+      .col-md-4
+        h2.text-center
+          = link_to 'Игроки', players_path, class: "main_link #{correct_active_class('/players')}"

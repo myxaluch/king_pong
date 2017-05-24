@@ -1,0 +1,47 @@
+.row
+  blockquote
+    p
+      | Рейтинг игрока высчитывается по формуле
+      code
+        | (gw - gl + wba - lba) &divide; 4
+      |, где
+    ul
+      li
+        code gw
+        | - кол-во выигранных игр,
+      li
+        code gl
+        | - кол-во проигранных игр,
+      li
+        code wba
+        | - среднее число выиграных мячей
+      li
+        code lba
+        | - среднее число проигранных мячей
+  = link_to 'Добавить нового игрока', new_player_path, class: 'btn main_button pull-right',
+    data: { toggle: 'modal', target: '#new_players_form' }
+br
+.row
+  table.table.table-hover
+    tr
+      th Место
+      th Рейтинг
+      th Имя
+      th Игр (в/п)
+      th Среднее число выигранных мячей
+      th Среднее число проигранных мячей
+      th Удалить
+    = render partial: 'players_table', collection: @players, as: :player
+
+.modal.fade#new_players_form tabsindex='-1' role='dialog'
+  .modal-dialog role='document'
+    .modal-content
+      .modal-header
+        h3 Создание нового игрока
+      .modal-body
+        = form_tag players_path do
+          .form-group
+            = label_tag :name, 'Введи имя'
+            = text_field_tag :name, nil, class: 'form-control'
+          .form-group
+            = submit_tag 'Создать', class: 'btn main_button'

@@ -1,0 +1,11 @@
+br
+.row
+  .col-md-6.col-md-offset-3
+    .jumbotron
+      h3.text-center Здорова, теннисисты!
+      p.text-center Для начала игр, просто нажмите на кнопку
+      p.text-center
+        = link_to 'Начать играть', '', class: 'btn main_button', data: { toggle: 'modal', target: '#new_games_form' }
+
+.modal.fade#new_games_form tabsindex='-1' role='dialog'
+  = render 'new_games_form'

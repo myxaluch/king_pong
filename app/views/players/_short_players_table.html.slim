@@ -1,0 +1,5 @@
+tr
+  td= player.name
+  td
+    = check_box_tag "players_ids[#{player.id}]", player.id, false, class: 'checkbox'
+
