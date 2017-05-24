@@ -1,8 +1,6 @@
 class Player < ApplicationRecord
   validates :name, presence: true
 
-  before_save :recount_weight
-
   scope :by_weight, -> { order(weight: :desc) }
 
   alias_attribute :rating, :weight
@@ -19,11 +17,5 @@ class Player < ApplicationRecord
     games(only_wins: false).order(:updated_at).map do |game|
       game.winner == self ? game.loser : game.winner
     end.last(count)
-  end
-
-  private
-
-  def recount_weight
-    self.weight = (win_games_count - lose_games_count + win_balls_average - lose_balls_average) / 4
   end
 end
