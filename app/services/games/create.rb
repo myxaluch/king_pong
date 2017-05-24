@@ -23,6 +23,7 @@ class Games::Create
   end
 
   def generate_active_players
+    context.fail!(error: 'Выберете больше одного игрока') if active_players.size < 2
     active_players << active_players.sample if active_players.size % 2 == 1
 
     @correct_active_players = active_players.shuffle

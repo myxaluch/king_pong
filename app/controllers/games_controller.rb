@@ -13,8 +13,8 @@ class GamesController < ApplicationController
     if result.success?
       redirect_to games_path(active: true)
     else
-      flash[:error] = result.errors
-      redirect_to games_path
+      flash[:danger] = result.error
+      redirect_to root_path
     end
   end
 
@@ -24,7 +24,7 @@ class GamesController < ApplicationController
     if result.success?
       flash[:success] = 'Game complete!'
     else
-      flash[:error] = result.errors
+      flash[:danger] = result.error
     end
 
     Game.active.any? ? redirect_to(games_path(active: true)) : redirect_to(games_path)
@@ -33,7 +33,7 @@ class GamesController < ApplicationController
   private
 
   def active_players_ids
-    params[:players_ids].keys.map(&:to_i)
+    params.fetch(:players_ids, {}).keys.map(&:to_i)
   end
 
   def player_points

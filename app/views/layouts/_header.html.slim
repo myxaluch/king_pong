@@ -1,6 +1,11 @@
 .container
   .header
     .row
+      - flash.each do |name, msg|
+        = content_tag :div, class: "alert alert-#{name} alert-dismissable"
+          = link_to 'X', '#', class: 'close', data: { dismiss: 'alert' }, aria: { label: 'close' }
+          p= msg
+    .row
       .col-md-4
         h2.text-center
           = link_to  'Игры', correct_games_path, class: "main_link #{correct_active_class('/games')}"
