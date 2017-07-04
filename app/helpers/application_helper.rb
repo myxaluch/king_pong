@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def correct_games_path
-    Game.active.present? ? games_path(active: true) : games_path
-  end
-
   def correct_active_class(path)
     'activated_link' if path == request.path
   end

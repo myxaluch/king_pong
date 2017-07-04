@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = params[:active].present? ? Game.active : Game.all
+    @games = Game.active.any? ? Game.active : Game.all
   end
 
   def show
@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     result = Games::Create.call(active_players: active_players_ids)
 
     if result.success?
-      redirect_to games_path(active: true)
+      redirect_to games_path
     else
       flash[:danger] = result.error
       redirect_to root_path
@@ -27,7 +27,7 @@ class GamesController < ApplicationController
       flash[:danger] = result.error
     end
 
-    Game.active.any? ? redirect_to(games_path(active: true)) : redirect_to(games_path)
+    redirect_to games_path
   end
 
   private
