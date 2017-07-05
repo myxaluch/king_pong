@@ -8,4 +8,4 @@
       th Проигравший
       th Счёт
       th Дата игры
-    = render partial: 'games/games_table', collection: @player.games, as: :game
+    = render partial: 'games/games_table', collection: @player.games, as: :game, locals: { with_date: true }

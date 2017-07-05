@@ -3,6 +3,10 @@ module ApplicationHelper
     'activated_link' if path == request.path
   end
 
+  def games_dates(games)
+    games.map { |game| game.updated_at.strftime('%d/%m/%Y') }.uniq
+  end
+
   def winner_place_colors(index)
     if Game.completed.count > 10
       case index

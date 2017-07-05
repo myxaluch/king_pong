@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.active.any? ? Game.active : Game.all
+    @games = basic_relation.order(updated_at: :desc)
   end
 
   def show
@@ -31,6 +31,10 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def basic_relation
+    Game.active.any? ? Game.active : Game.all
+  end
 
   def active_players_ids
     params.fetch(:players_ids, {}).keys.map(&:to_i)

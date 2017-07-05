@@ -4,12 +4,13 @@ br
     - if Game.active.present?
       = render partial: 'active_games', collection: @games, as: :game
     - else
-      table.table
-        tr
-          th #
-          th Победитель
-          th Проигравший
-          th Счёт
-          th Дата игры
-        = render partial: 'games_table', collection: @games, as: :game
-
+      - games_dates(@games).each do |date|
+        h3= 'Дата игр - ' + date
+        table.table
+          tr
+            th #
+            th Победитель
+            th Проигравший
+            th Счёт
+          = render partial: 'games_table',
+            collection: @games.where(updated_at: DateTime.parse(date).beginning_of_day..DateTime.parse(date).end_of_day),as: :game, locals: { with_date: false }

@@ -1,7 +1,9 @@
 tr
-  td= game_counter + 1
-  td= game.winner.name
-  td= game.loser.name
-  td= "#{game.winner_points}/#{game.loser_points}"
-  td= game.updated_at.strftime('%d/%m/%Y')
-
+  td.col-md-1= game_counter + 1
+  td.col-md-3= game.winner.name
+  td.col-md-3= game.loser.name
+  - if with_date == false
+    td.col-md-5= "#{game.winner_points}/#{game.loser_points}"
+  - else
+    td.col-md-2= "#{game.winner_points}/#{game.loser_points}"
+    td.col-md-3= game.updated_at.strftime('%d/%m/%Y')
