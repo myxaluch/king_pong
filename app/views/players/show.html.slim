@@ -1,0 +1,11 @@
+.row
+  h2= @player.name
+  br
+  table.table
+    tr
+      th #
+      th Победитель
+      th Проигравший
+      th Счёт
+      th Дата игры
+    = render partial: 'games/games_table', collection: @player.games, as: :game
