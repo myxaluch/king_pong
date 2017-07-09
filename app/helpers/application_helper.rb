@@ -7,6 +7,10 @@ module ApplicationHelper
     games.map { |game| game.updated_at.strftime('%d/%m/%Y') }.uniq
   end
 
+  def correct_balls_count_for(player)
+    player.total_games_count.zero? ? 0 : (player.balls_count / player.total_games_count).round(2)
+  end
+
   def winner_place_colors(index)
     if Game.completed.count > 10
       case index
