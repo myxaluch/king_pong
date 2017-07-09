@@ -29,12 +29,12 @@ class Games::Complete
   def update_players_stats!
     winner.win_games_count += 1
     winner.total_games_count += 1
-    winner.balls_count = (winner.balls_count + game.winner_points) / winner.total_games_count
+    winner.balls_count += game.winner_points
     winner.save!
 
     loser.lose_games_count += 1
     loser.total_games_count += 1
-    loser.balls_count = (loser.balls_count + game.loser_points) / loser.total_games_count
+    loser.balls_count += game.loser_points
     loser.save!
   end
 end
