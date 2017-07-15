@@ -10,8 +10,10 @@ div.games-item
             p.text-right= "#{game.player_two.name}"
         .row
           .col-md-4
-           = text_field_tag 'player_one_points', nil, class: 'form-control'
+            = text_field_tag 'player_one_points', nil, class: 'form-control'
           .col-md-4.pull-right
-           = text_field_tag 'player_two_points', nil, class: 'form-control'
+            = text_field_tag 'player_two_points', nil, class: 'form-control'
         .row.text-center
           = submit_tag 'Завершить', class: 'btn main_button'
+        .row
+          p.text-center=  game.created_at.strftime('%d-%m-%Y')

@@ -13,4 +13,4 @@ br
             th Проигравший
             th Счёт
           = render partial: 'games_table',
-            collection: @games.where(updated_at: DateTime.parse(date).beginning_of_day..DateTime.parse(date).end_of_day),as: :game, locals: { with_date: false }
+            collection: @games.by_date(date),as: :game, locals: { with_date: false }
