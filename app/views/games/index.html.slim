@@ -1,5 +1,9 @@
 br
 .container
+  .row
+    .col-md-4.col-md-offset-4
+      = render partial: 'game_filters'
+  br
   .row.games-list
     - if Game.active.present?
       = render partial: 'active_games', collection: @games, as: :game
@@ -13,4 +17,4 @@ br
             th Проигравший
             th Счёт
           = render partial: 'games_table',
-            collection: @games.by_date(date),as: :game, locals: { with_date: false }
+            collection: @games.by_date(date), as: :game, locals: { with_date: false }

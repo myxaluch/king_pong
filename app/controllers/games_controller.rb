@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = basic_relation.order(updated_at: :desc)
+    @games = filtered_games.order(updated_at: :desc)
   end
 
   def show
@@ -34,6 +34,17 @@ class GamesController < ApplicationController
 
   def basic_relation
     Game.active.any? ? Game.active : Game.all
+  end
+
+  def filtered_games
+    player = Player.find_by(name: filter_params)
+    player.present? ? basic_relation.by_player(player) : basic_relation
+  end
+
+  def filter_params
+    return unless params[:player_filter].present?
+
+    params.require(:player_filter)
   end
 
   def active_players_ids

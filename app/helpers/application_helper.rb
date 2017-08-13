@@ -25,4 +25,8 @@ module ApplicationHelper
         end
       end
   end
+
+  def list_of_players
+    Player.select(:name).pluck(:name)
+  end
 end
