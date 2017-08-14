@@ -27,6 +27,6 @@ module ApplicationHelper
   end
 
   def list_of_players
-    Player.select(:name).pluck(:name)
+    Player.select(:name).order(:name).pluck(:name)
   end
 end
