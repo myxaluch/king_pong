@@ -9,13 +9,13 @@ class Player < ApplicationRecord
     if only_wins
       ::Game.completed.where(winner: self)
     else
-      ::Game.completed.where('player_one_id = ? OR player_two_id = ?', id, id)
+      ::Game.where('player_one_id = ? OR player_two_id = ?', id, id)
     end
   end
 
   def last_rivals(count: 2)
     games(only_wins: false).order(:updated_at).map do |game|
-      game.winner == self ? game.loser : game.winner
+      game.player_one == self ? game.player_two : game.player_one
     end.last(count)
   end
 end
