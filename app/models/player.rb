@@ -3,8 +3,6 @@ class Player < ApplicationRecord
 
   scope :by_weight, -> { order(weight: :desc) }
 
-  alias_attribute :rating, :weight
-
   def games(only_wins: false)
     if only_wins
       ::Game.completed.where(winner: self)

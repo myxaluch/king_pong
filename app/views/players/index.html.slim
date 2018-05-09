@@ -3,7 +3,6 @@
     p
       | Рейтинг игрока высчитывается по формуле, взятой на
       =link_to ' сайте Украинской федерации тенниса ', 'http://reiting.com.ua/rating/about/'
-      | (на российском сайте я что-то не нашёл)
   = link_to 'Добавить нового игрока', new_player_path, class: 'btn main_button pull-right',
     data: { toggle: 'modal', target: '#new_players_form' }
 br
@@ -12,6 +11,7 @@ br
     tr
       th Место
       th Рейтинг
+      th Вес
       th Имя
       th Игр (в/п)
       th Среднее число забитых мячей за матч
