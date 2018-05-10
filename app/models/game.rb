@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id            :integer          not null, primary key
+#  player_one_id :integer
+#  player_two_id :integer
+#  winner_id     :integer
+#  loser_id      :integer
+#  state         :string(255)
+#  winner_points :integer          default(0)
+#  loser_points  :integer          default(0)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class Game < ApplicationRecord
   include AASM
 
