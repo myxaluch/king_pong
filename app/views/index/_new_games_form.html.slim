@@ -4,12 +4,6 @@
       h3 Выбери игроков для сегодняшних игр
     .modal-body
       = form_tag games_path do
-        .row
-          .col-md-7
-            = label_tag :rivals_count, 'Сколько предыдущих противников исключить из генерации'
-          .col-md-5
-            = number_field_tag :rivals_count, 2, class: 'form-control', min: 1
-        br
         table.table.table-hover
           tr
             th Имя

@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    result = Games::Create.call(active_players: active_players_ids, rivals_count: rivals_count)
+    result = Games::Create.call(active_players: active_players_ids)
 
     if result.success?
       redirect_to games_path
@@ -49,10 +49,6 @@ class GamesController < ApplicationController
 
   def active_players_ids
     params.fetch(:players_ids, {}).keys.map(&:to_i)
-  end
-
-  def rivals_count
-    params.fetch(:rivals_count, 2).to_i
   end
 
   def player_points

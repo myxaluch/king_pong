@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508163456) do
+ActiveRecord::Schema.define(version: 20180524183821) do
 
   create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "player_one_id"
@@ -35,11 +35,10 @@ ActiveRecord::Schema.define(version: 20180508163456) do
     t.integer  "lose_games_count",              default: 0,   null: false
     t.float    "win_balls_average",  limit: 24, default: 0.0, null: false
     t.float    "lose_balls_average", limit: 24, default: 0.0, null: false
-    t.integer  "weight",                        default: 0,   null: false
+    t.float    "weight",             limit: 24, default: 0.0, null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.float    "balls_count",        limit: 24, default: 0.0, null: false
-    t.integer  "rating",                        default: 0,   null: false
   end
 
 end

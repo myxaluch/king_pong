@@ -1,7 +1,9 @@
 class Games::Create
   include Interactor
 
-  delegate :active_players, :rivals_count, to: :context
+  RIVALS_COUNT = 3
+
+  delegate :active_players, to: :context
 
   def call
     new_games = find_rivals.map do |hash_rivals|
@@ -28,7 +30,7 @@ class Games::Create
 
     @correct_active_players = active_players.shuffle
     while @correct_active_players.each_slice(2).select { |first, second|
-            (first == second) || (::Player.find(first).last_rivals(count: rivals_count).map(&:id).include?(second))
+            (first == second) || (::Player.find(first).last_rivals(count: RIVALS_COUNT).map(&:id).include?(second))
           }.any?
 
       @correct_active_players = active_players.shuffle
